@@ -623,52 +623,6 @@ EOS_JS_COVERAGE_FILES := $(shell find $(top_srcdir)/js -name '*.js' | $(SED) s,^
 AM_JS_LOG_FLAGS += @EOS_JS_COVERAGE_LOG_FLAGS@
 AM_LDFLAGS = @EOS_C_COVERAGE_LDFLAGS@
 
-# # # DOCUMENTATION # # #
-
-if ENABLE_JS_DOC
-
-build_naturaldocs_verbose = $(build_naturaldocs_verbose_@AM_V@)
-build_naturaldocs_verbose_ = $(build_naturaldocs_verbose_@AM_DEFAULT_V@)
-build_naturaldocs_verbose_0 = @echo '  DOC    Building naturaldocs documentation';
-
-# Stamp file is present if all the docs have been built, and carries the
-# timestamp of the last successful build.
-stamp_file = docs/reference/js/doc-build.stamp
-
-$(stamp_file): docs/reference/js/eos.css $(js_files)
-	$(build_naturaldocs_verbose)$(MKDIR_P) $(@D)/html && \
-	cd $(@D) && \
-	$(NATURALDOCS) -o HTML html -p . -s Default eos -hl All -i $(abs_srcdir)/js && \
-	touch $(@F)
-
-dist_noinst_DATA += $(stamp_file)
-
-naturaldocs_extra_clean_files = \
-	docs/reference/js/Data/*.nd \
-	docs/reference/js/Menu.txt \
-	docs/reference/js/Topics.txt \
-	docs/reference/js/Languages.txt \
-	$(NULL)
-EXTRA_DIST += docs/reference/js/eos.css
-CLEANFILES += $(stamp_file)
-DISTCLEANFILES += $(naturaldocs_extra_clean_files)
-
-distclean-local::
-	@rm -rf docs/reference/js/html
-
-# Copy from $builddir first, and if that's not there (for example during
-# distcheck the docs don't get rebuilt because the stamp file is already there
-# and the source files are not newer) copy from $srcdir.
-dist-hook::
-	@$(MKDIR_P) $(distdir)/docs/reference/js/html
-	@if test -d docs/reference/js/html; then \
-		cp -r docs/reference/js/html/* $(distdir)/docs/reference/js/html; \
-	elif test -d $(srcdir)/docs/reference/js/html; then \
-		cp -r $(srcdir)/docs/reference/js/html/* $(distdir)/docs/reference/js/html; \
-	fi
-
-endif
-
 # # # INTROSPECTION # # #
 
 -include $(INTROSPECTION_MAKEFILE)

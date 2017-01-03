@@ -191,7 +191,6 @@ use the latest stable release branch from GNOME if you prefer that.
       <dep package="webkit2gtk"/>
       <dep package="sass"/>
       <dep package="compass"/>
-      <dep package="naturaldocs"/>
       <dep package="mathjax"/>
       <dep package="eos-shard"/>
       <dep package="polib"/>
