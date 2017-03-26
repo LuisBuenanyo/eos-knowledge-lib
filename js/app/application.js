@@ -43,6 +43,15 @@ const KnowledgeSearchIface = '\
   </interface> \
 </node>';
 
+const GrandCentralContentIface = '\
+<node> \
+  <interface name="com.endlessm.GrandCentralContent"> \
+    <method name="ContentQuery"> \
+      <arg type="s" name="Query" direction="in" /> \
+    </method> \
+  </interface> \
+</node>';
+
 const CREDITS_URI = 'resource:///app/credits.json';
 const APP_JSON_URI = 'resource:///app/app.json';
 const APP_YAML_URI = 'resource:///app/app.yaml';
@@ -73,6 +82,7 @@ const Application = new Knowledge.Class({
         this.parent(props);
         this._controller = null;
         this._knowledge_search_impl = Gio.DBusExportedObject.wrapJSObject(KnowledgeSearchIface, this);
+        this._grand_central_content_impl = Gio.DBusExportedObject.wrapJSObject(GrandCentralContentIface, this);
         this.image_attribution_file = Gio.File.new_for_uri(CREDITS_URI);
 
         Eknc.Engine.get_default().default_app_id = this.application_id;
@@ -139,12 +149,14 @@ const Application = new Knowledge.Class({
     vfunc_dbus_register: function (connection, path) {
         this.parent(connection, path);
         this._knowledge_search_impl.export(connection, path);
+        this._grand_central_content_impl.export(connection, path);
         return true;
     },
 
     vfunc_dbus_unregister: function (connection, path) {
         this.parent(connection, path);
         this._knowledge_search_impl.unexport_from_connection(connection);
+        this._grand_central_content_impl.unexport_from_connection(connection);
     },
 
     _check_for_content: function () {
@@ -218,6 +230,10 @@ const Application = new Knowledge.Class({
             query: query,
             timestamp: timestamp,
         });
+    },
+
+    ContentQuery: function (query) {
+        log("Got query " + query);
     },
 
     vfunc_activate: function () {
