@@ -48,6 +48,7 @@ const GrandCentralContentIface = '\
   <interface name="com.endlessm.GrandCentralContent"> \
     <method name="ContentQuery"> \
       <arg type="s" name="Query" direction="in" /> \
+      <arg type="s" name="Result" direction="out" /> \
     </method> \
   </interface> \
 </node>';
@@ -232,8 +233,20 @@ const Application = new Knowledge.Class({
         });
     },
 
-    ContentQuery: function (query) {
-        log("Got query " + query);
+    ContentQueryAsync: function (query, invocation) {
+        let engine = Eknc.Engine.get_default();
+        engine.query_promise({
+            tags_match_any: ['Nature0'],
+            tags_match_all: ['EknArticleObject'],
+            limit: 5
+        }).then(results =>
+            invocation.return_value(new GLib.Variant('(s)', [JSON.stringify(results.models.map(m => ({
+                title: m.title,
+                last_modified_date: m.last_modified_date,
+                thumbnail_uri: m.thumbnail_uri,
+                ekn_id: m.ekn_id
+                })))]))
+        );
     },
 
     vfunc_activate: function () {
