@@ -1,13 +1,13 @@
 .ContentGroupNoResultsMessage {
-    font-family: $body-font;
-
     &__title {
+        font-family: $support-font;
         color: $primary-light-color;
         font-size: 30px;
         padding-bottom: 30px;
     }
 
     &__subtitle {
+        font-family: $body-font;
         font-style: italic;
         color: $black-60-color;
         font-size: 22px;
@@ -18,10 +18,10 @@
 .composite {
     .ContentGroupNoResultsMessage {
         &__title {
-            font-family: $title-font-composite;
+            font-family: $support-font-composite;
         }
         &__subtitle {
-            font-family: $display-font-composite;
+            font-family: $body-font-composite;
         }
     }
 }

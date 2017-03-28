@@ -21,7 +21,7 @@
         .Card {
             &__title {
                 font-size: 21.3px;
-                font-family: $title-font;
+                font-family: $display-font;
                 color: white;
             }
 
@@ -61,7 +61,7 @@
 
     &__homeButton {
         font-size: 21.3px;
-        font-family: $title-font;
+        font-family: $display-font;
         font-weight: bold;
     }
 
