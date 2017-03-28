@@ -78,7 +78,7 @@
     &__title {
       font-size: 51px;
       font-weight: 900;
-      font-family: $title-font;
+      font-family: $display-font;
       margin: 30px 0;
     }
   }
@@ -167,7 +167,7 @@
     .BannerSet .CardTitle__title,
     .BannerSearch__title,
     .ContentGroupContentGroup__title {
-      font-family: $title-font-composite;
+      font-family: $display-font-composite;
       font-size: 30px;
     }
 

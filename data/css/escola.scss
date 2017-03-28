@@ -13,6 +13,7 @@ $card-context-color: #b3b3b3 !default;
 $title-font: Raleway !default;
 $context-font: Raleway !default;
 $display-font: 'Raleway Black' !default;
+$support-font: Raleway !default;
 
 @import "base";
 
@@ -23,10 +24,6 @@ $display-font: 'Raleway Black' !default;
 
 .DecorationThemeableImage {
   margin: 0px 30px;
-}
-
-.NavigationSearchBox {
-  font-family: $context-font;
 }
 
 .home-page {
@@ -53,7 +50,7 @@ $display-font: 'Raleway Black' !default;
     .ContentGroupStaticText {
       color: white;
       font-size: 30px;
-      font-family: $title-font;
+      font-family: $display-font;
       font-weight: 500;
       margin-top: -0.90em;
     }
@@ -154,7 +151,7 @@ $display-font: 'Raleway Black' !default;
 }
 
 .ContentGroupNoResultsMessage {
-  font-family: $context-font;
+  font-family: $support-font;
   margin-top: 50px;
   padding: 0;
   &__title,

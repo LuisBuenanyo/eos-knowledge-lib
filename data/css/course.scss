@@ -18,6 +18,7 @@ $base-color-shade: #0f6b9f !default;
 $body-font: Roboto !default;
 $title-font: Roboto !default;
 $display-font: Roboto !default;
+$logo-font: Roboto !default;
 $context-font: Roboto !default;
 $support-font: 'Montserrat' !default;
 
@@ -48,14 +49,14 @@ $support-font: 'Montserrat' !default;
         min-height: 120px;
         min-width: 400px;
         font-weight: normal;
-        font-family: $title-font;
+        font-family: $logo-font;
         font-size: 58px;
       }
       &__subtitle {
         color: $primary-medium-color;
         padding: 25px 40px;
         margin-top: -20px;
-        font-family: $title-font;
+        font-family: $support-font;
         font-size: 28px;
         background-color: $accent-medium-color;
         margin-left: 120px;
@@ -97,7 +98,7 @@ $support-font: 'Montserrat' !default;
       .BannerDynamic__logo {
         color: $primary-dark-color;
         font-size: 30px;
-        font-family: $title-font;
+        font-family: $display-font;
         font-weight: normal;
       }
     }
@@ -187,7 +188,7 @@ $support-font: 'Montserrat' !default;
       -EknDynamicLogo-sizing: "size-min";
       color: $primary-dark-color;
       font-size: 28px;
-      font-family: $title-font;
+      font-family: $logo-font;
       font-weight: normal;
       margin-top: 5px;
     }

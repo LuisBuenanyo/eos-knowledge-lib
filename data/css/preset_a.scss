@@ -121,7 +121,7 @@ $display-font-composite: 'Roboto' !default;
         .ContentGroupContentGroup__title,
         .BannerSet__title,
         .BannerSearch__title {
-            font-family: $title-font-composite;
+            font-family: $display-font-composite;
         }
 
         .CardLegacyPolaroid__title {
