@@ -62,6 +62,15 @@ const OVERRIDES_SCSS_URI = 'resource:///app/overrides.scss';
 const AUTOBAHN_COMMAND = 'autobahn -I ' + Config.YAML_PRESET_DIR + ' ';
 const SCSS_COMMAND = 'sassc -a -I ' + Config.TOP_THEME_DIR + ' ';
 
+function grandCentralObjectPath(applicationId) {
+    return (
+        '/com/endlessm/GrandCentral/ContentProviderV1/' +
+        applicationId.replace(/([^A-Za-z0-9])/g, function(m) {
+            return '_' + m.charCodeAt(0).toString(16);
+        })
+    );
+}
+
 /**
  * Class: Application
  */
@@ -150,7 +159,8 @@ const Application = new Knowledge.Class({
     vfunc_dbus_register: function (connection, path) {
         this.parent(connection, path);
         this._knowledge_search_impl.export(connection, path);
-        this._grand_central_content_impl.export(connection, path);
+        this._grand_central_content_impl.export(connection,
+                                                grandCentralObjectPath(this.get_application_id()));
         return true;
     },
 
