@@ -11,11 +11,6 @@ $accent-dark-color: #d16550 !default;
 $legacy-post-card-border-color: transparentize(black, 1 - 0.70) !default;
 $legacy-post-card-border-color-hover: white !default;
 
-$body-font: 'Lato' !default;
-$title-font: 'Montserrat' !default;
-$display-font: 'Lato' !default;
-$display-font-composite: 'Roboto' !default;
-
 @import "base";
 
 .WindowSimple {
